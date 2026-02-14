@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>VUE</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="stylesheet" href="css/gokuStyle.css">
+
+
+</head>
+
+<body>
+    <header class="bg-success text-center text-white">
+        <span class="h2">VUE</span>
+    </header>
+
+    <section class="container-fluid text-center" id="contenedor">
+        <div class="row">
+            <h2 class="col-12">Personajes de DragonBall</h2>
+
+
+            <div class="card col-2 p-3" v-for="personaje in personajesFiltrados" :key="personaje.id"
+                class="col-md-6 offset-md-3">
+                <img class="card-img-top" :src="personaje.image" :title="personaje.name"> </img>
+
+                <div class="card-body">
+                    <h5 class="card-title">{{personaje.name}}</h5>
+                    <p class="card-text">{{personaje.ki}}</p>
+                    <h5 class="card-title">{{personaje.race}}</h5>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        @click="personajeSeleccionado = personaje"> Ver
+                        más.....</button>
+                </div>
+
+            </div>
+
+
+        </div>
+        
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{personajeSeleccionado?.name}}</h1>
+                    </div>
+                    <div class="modal-body text-dark">
+                        <img :src="personajeSeleccionado?.image" :title="personajeSeleccionado?.name">
+                        <p><strong>Ki: </strong>{{personajeSeleccionado?.ki}}</p>
+                        <p><strong>MaxKi: </strong>{{personajeSeleccionado?.maxki}}</p>
+                        <p><strong>Race: </strong>{{personajeSeleccionado?.race}}</p>
+                        <p><strong>Gender: </strong>{{personajeSeleccionado?.gender}}</p>
+                        <p><strong>Description: </strong>{{personajeSeleccionado?.description}}</p>
+                        <p><strong>Affiliation: </strong>{{personajeSeleccionado?.affiliation}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="bg-dark text-center text-white">
+            <div class="container d-felx justify-content-between">
+                <button class="btn filter-btn" @click="filtrarPorCategoria('Saiyan')">Saiyans</button>
+                <button class="btn filter-btn" @click="filtrarPorCategoria('Human')">Human</button>
+                <button class="btn filter-btn" @click="filtrarPorCategoria('Android')">Android</button>
+                <button class="btn filter-btn" @click="filtrarPorCategoria('Namekian')">Namekian</button>
+                <button class="btn filter-btn" @click="filtrarPorCategoria('Frieza Race')">Frieza Race</button>
+
+
+
+            </div>
+            <span class="h2">Frameworks</span>
+        </footer>
+    </section>
+    <script src="js/vue3.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="js/funciones.js"></script>
+</body>
+
+</html>
